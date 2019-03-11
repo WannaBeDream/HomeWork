@@ -8,7 +8,7 @@ function getFirstOperand(){
             firstOperand = +prompt('Введите первое число','');
             if (!validationNumber(firstOperand)) {
                 alert('Wrong,try again');
-                getOperand();
+                getFirstOperand()
             } break ;
         } 
     return firstOperand;    
@@ -20,7 +20,7 @@ function getSecondOperand(){
         secondOperand = +prompt('Введите второе число','');
         if (!validationNumber(secondOperand)) {
             alert('Wrong,try again');
-            getOperand();
+            getSecondOperand()
         } break ;
     }
     return secondOperand;
