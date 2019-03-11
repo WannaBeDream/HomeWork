@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    background: url(backgr.jpg) no-repeat;
+    height: 800px;
+}
+.name {
+    color: rgb(179, 11, 165) ;
+    font-size: 100px;
+    text-align: center ;
+    margin: 0;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 2px black, 0 0 1em rgb(183, 0, 255);
+}
