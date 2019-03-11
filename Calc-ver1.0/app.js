@@ -3,27 +3,27 @@ let secondOperand;
 let operator ;
 let result;
 function getFirstOperand(){
-        switch(firstOperand) {
-            case firstOperand :
+        switch(true) {
+            case true :
             firstOperand = +prompt('Введите первое число','');
             if (!validationNumber(firstOperand)) {
                 alert('Wrong,try again');
                 getFirstOperand()
             } break ;
         } 
-    return firstOperand;    
+    return parseInt(firstOperand);    
     }
 
 function getSecondOperand(){
-    switch (secondOperand) {
-        case secondOperand :
+    switch (true) {
+        case true :
         secondOperand = +prompt('Введите второе число','');
         if (!validationNumber(secondOperand)) {
             alert('Wrong,try again');
             getSecondOperand()
         } break ;
     }
-    return secondOperand;
+    return parseInt(secondOperand);
 }
 function validationNumber(value) {
     return !(isNaN(value) || value === '' || value === null) ;
