@@ -9,7 +9,7 @@ function getOperand(question) {
    var operand = prompt(question,'');
             if (!validationNumber(operand)) {
                 alert('Wrong,try again');
-                getOperand();
+                getOperand(question);
             }   
             return operand;
 }
