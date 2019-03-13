@@ -4,13 +4,12 @@ function validationNumber(value) {
 function validationOperator(value) {
     return (value === '+' || value === '-'|| value === '*' || value === '/') ;
 }
-
 function getOperand(question) {
-   var operand = prompt(question,'');
+   const operand = prompt(question,'');
             if (!validationNumber(operand)) {
                 alert('Wrong,try again');
-                getOperand(question);
-            }   
+             return getOperand(question);
+            }  
             return operand;
 }
 
@@ -18,7 +17,7 @@ function getAction() {
    var action = prompt('Введите оператор( + - * / )','');
         if (!validationOperator(action)) {
             alert('Wrong,try again');
-            getAction();
+         return  getAction();
         } 
     return action;
 }
@@ -34,7 +33,7 @@ function calculate(operandA, operandB, action){
     } else if (action == '/') {
          result = +operandA / +operandB;
     } 
-    return result;
+    return parseInt(result);
 }
 
 const operandA = getOperand('первый'); 
