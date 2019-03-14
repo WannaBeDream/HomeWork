@@ -23,7 +23,7 @@ function askQuestion(dataOfPoll) {
         askUser = prompt(dataOfPoll.question, '') ;
         if(!validation(askUser)) {
             alert('Wrong,try again plz or suffer user');
-            askQuestion(dataOfPoll);
+         return askQuestion(dataOfPoll);
     }   break;  
     
     case 'confirm' : 

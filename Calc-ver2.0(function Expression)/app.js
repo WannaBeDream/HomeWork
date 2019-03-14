@@ -1,12 +1,17 @@
-function validationNumber(value) {
-    return !(isNaN(value) || value === '' || value === null) ;
+function validateNumber(value) {
+    return !(isNaN(value) 
+    || value === '' 
+    || value === null) ;
 }
-function validationOperator(value) {
-    return (value === '+' || value === '-'|| value === '*' || value === '/') ;
+function validateOperator(value) {
+    return (value === '+' 
+    || value === '-'
+    || value === '*' 
+    || value === '/') ;
 }
 function getOperand(question) {
-   const operand = prompt(question,'');
-            if (!validationNumber(operand)) {
+   let operand = prompt(question,'');
+            if (!validateNumber(operand)) {
                 alert('Wrong,try again');
              return getOperand(question);
             }  
@@ -14,8 +19,8 @@ function getOperand(question) {
 }
 
 function getAction() {
-   var action = prompt('Введите оператор( + - * / )','');
-        if (!validationOperator(action)) {
+   let action = prompt('Введите оператор( + - * / )','');
+        if (!validateOperator(action)) {
             alert('Wrong,try again');
          return  getAction();
         } 
@@ -23,17 +28,22 @@ function getAction() {
 }
 
 function calculate(operandA, operandB, action){
-    var result;
-    if (action == '+'){
+    let result;
+    switch (action){
+        case '+' :
          result = +operandA + +operandB;
-    } else if (action == '-') {
+     break ;
+        case '-' :
          result = +operandA - +operandB;
-    } else if (action == '*') {
+     break ;
+        case '*' :
          result = +operandA * +operandB;
-    } else if (action == '/') {
+     break ;
+        case '/' :
          result = +operandA / +operandB;
-    } 
-    return parseInt(result);
+     break ;
+        } 
+    return result;
 }
 
 const operandA = getOperand('первый'); 
