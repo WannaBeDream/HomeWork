@@ -48,6 +48,40 @@ alert(maxRandomNumber);
 
 
 
+// function inputNumber() {
+//     let userNumber = prompt('Please input number.', 'type your number');
+
+//     if (validateUserNumber(userNumber)) {
+//         alert('You input invalid data. Please input number.');
+//         return inputNumber();
+//     } else {
+//         return userNumber;
+//     };
+// };
+
+// function validateUserNumber(value) {
+//     return value === null || value === '' || isNaN(value);
+// };
+
+// function countEvenNumbers(value) {
+//     let  count = 0;
+
+//     for (let i = 0; i < value.length; i++) {
+//         if (value[i] % 2 === 0) {
+//             count++;
+//         };
+//     };
+//     return count;
+// };
+
+// let result = (countEvenNumbers(inputNumber()));
+
+// alert(result);
+
+
+
+
+
 
 
 
