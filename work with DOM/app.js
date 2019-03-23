@@ -32,11 +32,6 @@ function validateNumber(value) {
     return (isNaN(value) ||  value === null ||  value === '' || value > 100 ||  value < 1);
 }
 
-function removeSpace(value){
-    return (value.split(' ').join(''));     
-     
-}
-
 
 
 function getLiCounts(questionSecond) {
