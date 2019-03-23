@@ -1,12 +1,12 @@
 const headLine = document.getElementsByTagName('h1');
-headLine.item(0).textContent = "Hello, " + getName('Как вас зовут?');
+headLine[0].textContent = "Hello, " + getName('Как вас зовут?');
 
 
-function getName(question) {
-let name = prompt(question,'')
- if (validateName(name)){
+function getName(questionFirst) {
+let name = prompt(questionFirst,'')
+ if (validateName(name)) {
     alert('plz try again');
-    return getName(question);
+    return getName(questionFirst);
  } else {
      return name;
  }
@@ -14,7 +14,7 @@ let name = prompt(question,'')
 
 
 function validateName(value) {
-    return !(isNaN(value) || value === '' || value === null ) ;
+    return (!isNaN(value) || value === '' || value === null ) ;
 
 }
 
@@ -25,36 +25,40 @@ function validateName(value) {
 const newElemUl = document.createElement('ul');
 document.body.appendChild(newElemUl);
 
-const liCounts = +getLiCounts('Введите количество заголовков');
-const pastedElementsLi = textCreate(liCounts);
-newElemUl.insertAdjacentHTML('afterBegin', pastedElementsLi);
 
 
 
 function validateNumber(value) {
-    return !( value === '' || value === null ||  (value > 100) || (value < 0));
+    return (isNaN(value) ||  value === null ||  value === '' || value > 100 ||  value < 1);
+}
+
+function removeSpace(value){
+    return (value.split(' ').join(''));     
+     
 }
 
 
 
-
-function getLiCounts(question) {
-    let numbers = +prompt(question,'');
-     if(!validateNumber(numbers)){
-         return getLiCounts(question)
-     } else {
+function getLiCounts(questionSecond) {
+    let numbers = +prompt(questionSecond,'');
+    if(validateNumber(numbers)){
+         return getLiCounts(questionSecond)
+        } else {
          return numbers;
      }
-}
+    }
 
-
+    
 function textCreate(value) {
     let str = '';
-
+    
     for(let i = 0; i < value; i++) {
          str += '<li>' + (i + 1) + '</li>';
-
+         
     }
         return str;
-}
-
+    }
+    
+    const liCounts = +getLiCounts('Введите количество заголовков');
+    const pastedElementsLi = textCreate(liCounts);
+    newElemUl.insertAdjacentHTML('afterBegin', pastedElementsLi);
