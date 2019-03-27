@@ -1,30 +1,30 @@
 const ulList = document.querySelector('ul');   
  //  const ulList = document.getElementsByTagName('ul');
-const formatButton = document.querySelector('button')  
+const formatButton = document.querySelector('button');  
 //  const formatButton = document.getElementsByTagName('button')
-    .addEventListener('click', changeList);
+
+    formatButton.addEventListener('click', getNewList);
+    ulList.addEventListener('click', toggleBackgroundColor);
+    ulList.addEventListener('click', removeElement);
     
-function changeList() {
+function getNewList() {
     const createdLi = document.createElement('li');
     createdLi.textContent = 'Phoenix qwe asd zxc'; 
-    // createdLi.innerText = 'bla bla bla';                                                      
+    // createdLi.innerText = 'bla bla bla';  // inerHTML                                                   
     ulList.appendChild(createdLi);
     // ulList.insertBefore(createdLi, ulList.lastChild[-1]);
-    createdLi.addEventListener('click', getPowerButtonClick);
-    createdLi.addEventListener('click', function (event) {
-        if (event.altKey) 
-            this.parentNode.removeChild(createdLi);
-    })
+};
+
+function toggleBackgroundColor(elem) {
+    if(elem.target.tagName === 'LI') 
+        elem.target.style.background =
+            elem.target.style.background === 'green' ?
+            'yellow' : 'green';
 };
 
 
-function toggleBackgroundColor(element) {
-    element.style.background =
-        element.style.background === 'green' ? 'yellow' : 'green';
-};
-
-
-function getPowerButtonClick(event) {
-    toggleBackgroundColor(event.target);
-};
+function removeElement(elem) {
+    if(elem.target.tagName === 'LI')
+        if(elem.altKey) elem.target.remove(); 
+}
 
