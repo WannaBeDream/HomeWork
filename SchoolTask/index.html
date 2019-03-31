@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM Events</title>
+   
+    <link rel="stylesheet" href="main.css">
+    <script src="app.js" async></script>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Age</th>
+                <th>Clear</th>
+            </tr>
+        </thead>
+        <tbody id="contactsList"></tbody>
+        <tfoot>
+            <tr>
+                <td>
+                    <input type="text" id="nameInput">
+                </td>
+                <td>
+                    <input type="text" id="phoneInput">
+                </td>
+                <td>
+                    <input type="number" id="ageInput">
+                </td>
+            </tr>
+            <td colspan="3" class="table-footer">
+                <button id="addContactBtn">Add Contact</button>
+            </td>
+        </tfoot>
+    </table>
+    <script type="text/template" id="contactTemplete">
+        <td>{{name}}</td>
+        <td>{{phone}}</td>
+        <td>{{age}}</td>
+        <td>
+            <button class='delBtn'></button>
+        </td>
+    </script>
+</body>
+
+</html>

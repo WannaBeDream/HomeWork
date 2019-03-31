@@ -16,7 +16,7 @@ function getNewList() {
 };
 
 function toggleBackgroundColor(elem) {
-    if(elem.target.tagName === 'LI') 
+    if(elem.target.tagName === 'LI' && elem.altKey)   // && elem.altKey 
         elem.target.style.background =
             elem.target.style.background === 'green' ?
             'yellow' : 'green';
@@ -28,3 +28,4 @@ function removeElement(elem) {
         if(elem.altKey) elem.target.remove(); 
 }
 
+// +memoryLick(listener) почитать для удаления обработчика из памяти
