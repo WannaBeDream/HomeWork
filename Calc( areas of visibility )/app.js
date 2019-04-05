@@ -22,7 +22,6 @@ function calculator(operand) {
         },
         erect: function getDefaultInErect(value){
             return Math.pow(this.get(),value); 
-            
         }
     } 
 }
@@ -37,4 +36,4 @@ console.log(value.set(100)); // устанавливает базовое зна
 console.log(value.get()); // возвращает базовое значение (в данный момент 100)
 
 console.log(value.mult(5)); // возвращает 500
-console.log(value.erect(1)); // возвращает базовое значение в переданой степени
+console.log(value.erect(3)); // возвращает базовое значение в переданой степени
