@@ -12,16 +12,15 @@ function Student(name,marks){
 function averageMark(){
     
   const sumMarks = this.marks.reduce( (previousMark, currentMark) => 
-    previousMark + currentMark );
-        return (sumMarks / this.marks.length).toFixed(3);
+  previousMark + currentMark );
+    return (sumMarks / this.marks.length).toFixed(3);
 
 }
 
 function woksDone(){
 
-    return this.marks.filter((number) => {
-      if( number > 0 ) 
-        return number}).length;
+    return this.marks.filter((number) => 
+    { return number > 0}).length;
       
 }
 
@@ -33,28 +32,28 @@ function addMark(value){
 
 function averageMarkGroup(){
 
-  const  sumAverageMarkGroup = students.
-    reduce ((previousValue, currentValue) => previousValue + +currentValue.averageMark(),0);
-        return (sumAverageMarkGroup / students.length).toFixed(3);
+  const  countsMarksGroup = students.reduce ((previousValue, currentValue) =>
+  previousValue + +currentValue.averageMark(),0);
+  return (countsMarksGroup / students.length).toFixed(3);
    
 }
 
 function completePercent(){
 
-  const sumWoksDoneGroup = students.reduce( (previousValue, currentValue) => 
+  const sumWoksOfGroup = students.reduce( (previousValue, currentValue) => 
     {return previousValue + currentValue.woksDone()}, 0);
-  const allWoks = students.reduce( (previousValue, currentValue) => 
+  const countsWoks = students.reduce( (previousValue, currentValue) => 
     {return previousValue + currentValue.marks.length}, 0);
 
-        return (sumWoksDoneGroup / allWoks) * 100 + ' %';
+        return (sumWoksOfGroup / countsWoks) * 100 + ' %';
 
 }
 
 
 
 const students = [ 
-    new Student('Student 1', [10,9,8,0,10]), // имя оценки
-    new Student('Student 12', [10,0,8,0,3,4])
+    new Student('Student 1', [10,10]), // имя оценки
+    new Student('Student 12', [10,10])
 ];
 
 // averageMark() - возвращает среднюю оценку
@@ -64,8 +63,8 @@ const students = [
 // coьpletePercent() - процент сданных работ по группе
 
  console.log(students[0].averageMark());
+ console.log(students[0].addMark(10));
  console.log(students[0].woksDone());
- console.log(students[0].addMark(4));
  console.log(students[0].averageMark());
  console.log(averageMarkGroup());
  console.log(completePercent());
