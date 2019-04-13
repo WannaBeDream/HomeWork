@@ -1,0 +1,25 @@
+.accordion-element {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.accordeon-heading:active {
+    padding: 20px;
+    border: 1px solid rgb(218, 8, 155);
+    background-color: rgb(182, 231, 5);
+}
+.accordeon-heading {
+    padding: 20px;
+    border: 1px solid black;
+    color: rgb(85, 218, 24);
+    background-color: rgb(73, 49, 139);
+    cursor: pointer;
+}
+
+.accordeon-body {
+    padding: 20px;
+    border: 1px solid red;
+    background-color: rgb(60, 85, 84);
+    color: rgb(112, 15, 223);
+}
