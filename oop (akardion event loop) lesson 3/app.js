@@ -5,15 +5,15 @@ function Accordion(el, config) {
 
 Accordion.prototype.init = function () {
 
-    Accordion.prototype.hiddenBody.call(this);
+    this.setHiddenBody.call(this);
     this.accordionHeader = this.el.getElementsByClassName('accordeon-heading');
 
     for (var i = 0; i < this.accordionHeader.length; i++) {
-        this.accordionHeader[i].addEventListener('click', this.onBodyAccordion.bind(this));
+        this.accordionHeader[i].addEventListener('click', this.onViewingAccordion.bind(this));
     }
 
 }
-Accordion.prototype.hiddenBody = function () {
+Accordion.prototype.setHiddenBody = function () {
     this.accordionBody = this.el.getElementsByClassName('accordeon-body');
     for (var i = 0; i < this.accordionBody.length; i++) {
         this.accordionBody[i].hidden = true;
@@ -47,11 +47,11 @@ Accordion.prototype.toggle = function (index) {
 }
 
 
-Accordion.prototype.onBodyAccordion = function (event) {
-    let ElemClicked = event.target.nextElementSibling.getAttribute('index');
+Accordion.prototype.onViewingAccordion = function (event) {
+    let elemClicked = event.target.nextElementSibling.getAttribute('index');
 
-    this.open(ElemClicked) ? this.close(ElemClicked) : this.open(ElemClicked);
-    if (!this.config.collapseOther) this.toСollapseOther(ElemClicked);
+    this.toggle(elemClicked);
+    if (!this.config.collapseOther) this.toСollapseOther(elemClicked);
 
 
 }
