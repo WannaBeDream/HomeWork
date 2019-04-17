@@ -14,7 +14,7 @@ img{
     border: 1px dashed blue;
 }
 
-ul,#container{
+#container__gallery,#container{
     height: 300px;
     display: flex;
     list-style-position: outside;
@@ -34,6 +34,7 @@ ul,#container{
     padding: 0;
     height: 300px;
     position: absolute;
+    
 }
 
 .container__btn-previous{

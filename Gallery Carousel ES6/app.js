@@ -1,15 +1,15 @@
 
 class Carousel {
-    constructor(el, { delay }) {
+    constructor(el,  delay ) {
         this.el = el;
-        this.delay = delay;
+        this.config = delay;
         this.init();
     }
     init() {
         this.createBtn();
         this.addEventListener();
-        this.viewingFirstImage();
-        this.autoViewingNextImage();
+        this.showFirstImage();
+        this.autoShowNextImage();
     }
     createBtn() {
         let btnPrivious = document.createElement('button');
@@ -20,35 +20,35 @@ class Carousel {
         this.el.parentNode.insertBefore(btnPrivious, this.el.parentNode.children[0]);
         this.el.parentNode.insertBefore(btnNext, this.el.parentNode.children[2]);
     }
-    autoViewingNextImage() {
-        this.viewingNextImage();
-        setTimeout(() => this.autoViewingNextImage(), this.delay);
+    autoShowNextImage() {
+        this.showNextImage();
+        setTimeout(() => this.autoShowNextImage(), this.config.delay);
     }
-    viewingPrewImage() {
-        if (!(this.currentElemViewing == this.el.firstElementChild)) {
+    showPrewImage() {
+        if (this.currentElemViewing != this.el.firstElementChild) {
             this.changeShowImage(this.currentElemViewing.previousElementSibling);
-        } else this.viewingLastImage();
+        } else this.showLastImage();
     }
-    viewingNextImage() {
-        if (!(this.currentElemViewing == this.el.lastElementChild)) {
+    showNextImage() {
+        if (this.currentElemViewing != this.el.lastElementChild) {
             this.changeShowImage(this.currentElemViewing.nextElementSibling);
-        } else this.viewingFirstImage();
+        } else this.showFirstImage();
     }
     changeShowImage(el) {
-        this.hiddenImage(this.currentElemViewing);
-        this.viewingImage(el);
+        this.unShowImage(this.currentElemViewing);
+        this.showImage(el);
         this.currentElemViewing = el;
     }
-    viewingFirstImage() {
+    showFirstImage() {
         this.changeShowImage(this.el.firstElementChild);
     }
-    viewingLastImage() {
+    showLastImage() {
         this.changeShowImage(this.el.lastElementChild);
     }
-    hiddenImage(el) {
-        !el || !el.classList.remove('active');
+    unShowImage(el) {
+        el && el.classList.remove('active');
     }
-    viewingImage(el) {
+    showImage(el) {
         el.classList.add('active');
     }
     addEventListener() {
@@ -56,19 +56,19 @@ class Carousel {
         this.el.parentNode.children[2].addEventListener('click', () => this.onBtnNextClick());
     }
     onBtnPrevClick() {
-        this.viewingPrewImage();
+        this.showPrewImage();
     }
     onBtnNextClick() {
-        this.viewingNextImage();
+        this.showNextImage();
     }
     show(index) {
         this.changeShowImage(this.el.children[index]);
     }
     next() {
-        this.viewingNextImage();
+        this.showNextImage();
     }
     prev() {
-        this.viewingPrewImage();
+        this.showPrewImage();
     }
 }
 
