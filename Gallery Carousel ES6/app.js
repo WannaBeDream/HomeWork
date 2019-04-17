@@ -1,3 +1,4 @@
+
 class Carousel {
     constructor(el, { delay }) {
         this.el = el;
@@ -16,8 +17,8 @@ class Carousel {
         btnPrivious.classList = 'container__btn-previous';
         btnNext.classList = 'container__btn-next';
 
-        this.el.parentNode.insertBefore(btnNext, this.el.parentNode.children[2]);
         this.el.parentNode.insertBefore(btnPrivious, this.el.parentNode.children[0]);
+        this.el.parentNode.insertBefore(btnNext, this.el.parentNode.children[2]);
     }
     autoViewingNextImage() {
         this.viewingNextImage();
@@ -31,7 +32,7 @@ class Carousel {
     viewingNextImage() {
         if (!(this.currentElemViewing == this.el.lastElementChild)) {
             this.changeShowImage(this.currentElemViewing.nextElementSibling);
-        } else  this.viewingFirstImage();
+        } else this.viewingFirstImage();
     }
     changeShowImage(el) {
         this.hiddenImage(this.currentElemViewing);
@@ -72,7 +73,7 @@ class Carousel {
 }
 
 
-const myGallery = new Carousel(document.getElementById('container__gallery'), { delay: 1000 });
+const myGallery = new Carousel(document.getElementById('container__gallery'), { delay: 2000 });
 // myGallery.next()
 // myGallery.show(0)
 // myGallery.prev()
