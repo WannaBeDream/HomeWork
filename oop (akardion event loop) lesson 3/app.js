@@ -75,6 +75,7 @@ accordion.init();
 
 
 
+
 // Ниже второй вариант через классы CSS и el.style (доделать!)
 
 
@@ -104,7 +105,7 @@ accordion.init();
 
 //     Accordeon.prototype.openCurrAccordion = function (event) {
 //         for(let i = 0; i < this.accHeads.length; i++) {
-//             this.parent = this.accHeads[i].parentElement;
+//             this.parent = this.accHeads[i].parentElement;   // children без цикла ( псевдомассив)  Array.Prototype.filter.call(this.container.children, )
 //             this.nextEl = this.accHeads[i].nextElementSibling;
 
 //             if (this === accHeads[i] && !parent.classList.contains('open')) {
