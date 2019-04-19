@@ -1,0 +1,27 @@
+.container__album {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 400px;
+    list-style: none;
+}
+
+.album__item-img {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    list-style: none;
+    cursor: pointer;
+}
+
+.album__main-img {
+    width: 400px;
+    height: 400px;
+    list-style: none;
+}
+
+.album__item-img img {
+    width: 100%;
+    height: 100%;
+}
