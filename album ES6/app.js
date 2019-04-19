@@ -24,7 +24,7 @@ class Album {
     getAndAddMainElement() {
         let liEl = document.createElement('li');
         this.mainImg = document.createElement('img');
-        liEL.appendChild(this.mainImg);
+        liEl.appendChild(this.mainImg);
 
         this.element.insertBefore(liEl, this.element.children[0]);
         this.mainImg.classList.add(Album.MAIN_ITEM_CLASS);
