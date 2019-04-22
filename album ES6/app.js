@@ -16,7 +16,7 @@ class Album {
     addClassAndEventListener() {
         this.element.classList.add(Album.CONTAINER_CLASS);
         this.element.addEventListener('mouseover', this.onAddMainImg.bind(this));
-        Array.prototype.forEach.call(this.element.children, (el) => {
+         Array.prototype.forEach.call(this.element.children, (el) => {
             el.classList.add(Album.ITEM_CLASS);
         })
     }
@@ -31,7 +31,7 @@ class Album {
     }
 
     onAddMainImg(event) {
-        if (event.target.classList == Album.ITEM_CLASS) {
+        if (event.target.classList == Album.ITEM_CLASS) {  //поверка на тегнейм = 'img'(верный вариант)
             this.mainImg.src = event.target.children[0].src;
         }
     }

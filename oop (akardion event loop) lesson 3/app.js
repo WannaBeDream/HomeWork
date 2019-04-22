@@ -64,7 +64,7 @@ const accordion = new Accordion(
 
 accordion.init();
 
-// accordion.open(1);
+accordion.open(0);
 // accordion.close(0);
 // accordion.toggle(1);
 
@@ -74,61 +74,146 @@ accordion.init();
 
 
 
-
-
-// Ниже второй вариант через классы CSS и el.style (доделать!)
-
-
-
+// Более верный вариант(не на индексах)
 
 
 // function Accordeon(el, config){
-//     this.el = el;
+//     this.container = el;
 //     this.config = config;
 
+//     this.init();
 // }
 
-// Accordeon.prototype.init = function () { 
-
-//     this.bindEventListeners();
-
+// Accordeon.prototype.init = function(){
+//     this.bindEventListener();
 // }
 
-// Accordeon.prototype.bindEventListeners = function() {
-//     this.accHeads = this.el.querySelectorAll('accordion-element accordeon-heading');
-//     for(let i = 0; i < this.accHeads.length; i++) {
-//         this.accHeads[i].addEventListener('click', (e) => this.openCurrAccordion.bind(this));
-//         console.log(this.accHeads[i]);
+// Accordeon.prototype.bindEventListener = function(){
+//     this.container.addEventListener('click', (e) => this.onContainerClick(e));
+// }
+
+// Accordeon.prototype.onContainerClick = function(e) {
+//     if (e.target.classList.contains('accordeon-heading')){
+//         this.toggleElement(e.target.parentNode);
 //     }
-//     console.log(this.accHeads[0]);
 // }
 
-//     Accordeon.prototype.openCurrAccordion = function (event) {
-//         for(let i = 0; i < this.accHeads.length; i++) {
-//             this.parent = this.accHeads[i].parentElement;   // children без цикла ( псевдомассив)  Array.Prototype.filter.call(this.container.children, )
-//             this.nextEl = this.accHeads[i].nextElementSibling;
+// Accordeon.prototype.toggleElement = function(el) {
+//     if (el.classList.contains('open')){
+//         this.closeElement(el);
+//     } else {
+//         this.openElement(el);
+//     }
+// }
 
-//             if (this === accHeads[i] && !parent.classList.contains('open')) {
-//                 this.parent.classList.add('open');
-//                 this.nextEl.style.maxHeight = article.scrollHeight + 'px';
-//             }
-//             else {
-//                 this.parent.classList.remove('open');
-//                 this.nextEL.style.maxHeight = '0px';
-//             }
-//         }
+// Accordeon.prototype.closeElement = function(el){
+//     el.classList.remove('open');
+// }
+
+// Accordeon.prototype.closeAllElements = function(){
+//     Array.prototype.forEach.call(this.container.children, this.closeElement);
+// }
+
+// Accordeon.prototype.openElement = function(el){
+//     if (this.config.collapseOther){
+//         this.closeAllElements();
 //     }
 
+//     el.classList.add('open');
+// }
 
+// Accordeon.prototype.open = function(index){
+//     this.openElement(this.container.children[index]);
+// }
 
+// Accordeon.prototype.close = function(index){
+//     this.closeElement(this.container.children[index]);
+// }
 
-// const accordion = new Accordeon(
+// Accordeon.prototype.toggle = function(index){
+//     this.toggleElement(this.container.children[index]);
+// }
+
+// const acc = new Accordeon(
 //                         document.getElementById('container'),
-//                         {collapseOther: false}
+//                         {collapseOther: true}
 //                     );
 
+// acc.open(0);
+// setTimeout(()=> acc.toggle(1), 3000);
+// // acc.close(0);
+// // acc.toggle(1);
 
-// accordion.init();
-// accordion.open(1);
-// accordion.close(0);
-// accordion.toggle(1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // Ниже третий вариант через классы CSS и el.style (доделать!)
+
+
+
+
+
+// // function Accordeon(el, config){
+// //     this.el = el;
+// //     this.config = config;
+
+// // }
+
+// // Accordeon.prototype.init = function () { 
+
+// //     this.bindEventListeners();
+
+// // }
+
+// // Accordeon.prototype.bindEventListeners = function() {
+// //     this.accHeads = this.el.querySelectorAll('accordion-element accordeon-heading');
+// //     for(let i = 0; i < this.accHeads.length; i++) {
+// //         this.accHeads[i].addEventListener('click', (e) => this.openCurrAccordion.bind(this));
+// //         console.log(this.accHeads[i]);
+// //     }
+// //     console.log(this.accHeads[0]);
+// // }
+
+// //     Accordeon.prototype.openCurrAccordion = function (event) {
+// //         for(let i = 0; i < this.accHeads.length; i++) {
+// //             this.parent = this.accHeads[i].parentElement;   // children без цикла ( псевдомассив)  Array.Prototype.filter.call(this.container.children, )
+// //             this.nextEl = this.accHeads[i].nextElementSibling;
+
+// //             if (this === accHeads[i] && !parent.classList.contains('open')) {
+// //                 this.parent.classList.add('open');
+// //                 this.nextEl.style.maxHeight = article.scrollHeight + 'px';
+// //             }
+// //             else {
+// //                 this.parent.classList.remove('open');
+// //                 this.nextEL.style.maxHeight = '0px';
+// //             }
+// //         }
+// //     }
+
+
+
+
+// // const accordion = new Accordeon(
+// //                         document.getElementById('container'),
+// //                         {collapseOther: false}
+// //                     );
+
+
+// // accordion.init();
+// // accordion.open(1);
+// // accordion.close(0);
+// // accordion.toggle(1);
+
+
+

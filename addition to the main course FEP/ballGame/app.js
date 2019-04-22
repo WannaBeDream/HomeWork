@@ -3,7 +3,7 @@ function BallGame(el, height, width){
   this.game = {
       direction: 'right',
       speed: 10,
-      refreshDelay: 300,
+      refreshDelay: 100,
       state: 'paused'
   }
 
