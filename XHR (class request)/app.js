@@ -19,8 +19,8 @@ class Users {
                 .replace('{{id}}', item.id)
                 .replace('{{name}}', item.name)
                 .replace('{{phone}}', item.phone)
-                .replace('{{email}}', item.email);
-        });
+                .replace('{{email}}', item.email)
+        })
 
         this.elem.children[1].innerHTML = dataForFillHtml;
     }
