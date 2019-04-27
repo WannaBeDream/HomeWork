@@ -45,3 +45,7 @@ var users = [{
   alert(users.map(getField('name'))); // результат [ "Вася", "Петя», "Маша" ]
   alert(users.map(getField('age'))); // результат [ 20, 25, 18]
   alert(users.map(getField('surname')));
+
+
+
+
