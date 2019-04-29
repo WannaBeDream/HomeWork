@@ -1,4 +1,5 @@
-const URL = 'https://jsonplaceholder.typicode.com/users';
+const URL = 'https://jsonplaceholder.typicode.com/';
+const QUERY_USERS = 'users';
 
 class Users {
     constructor(elem) {
@@ -7,14 +8,16 @@ class Users {
     }
 
     init() {
-        request('get', URL, (respObj) => { this.toRenderUserData(respObj) });
+        request('get', URL + QUERY_USERS , (respObj) => { this.toRenderUserData(respObj) });
+        // this.element.addEventListener('onclick', this.onClickUserString);
+        
     }
 
     toRenderUserData(respObj) {
         let userTemplate = document.getElementById('userTemplate').innerHTML;
         let dataForFillHtml = '';
 
-        respObj.map((item) => {
+        respObj.filter((item) => {
             dataForFillHtml += userTemplate
                 .replace('{{id}}', item.id)
                 .replace('{{name}}', item.name)
