@@ -10,8 +10,8 @@ class Users {
     }
 
     init() {
-        this.request('get', URL + QUERY_USERS, this.toRenderUserData.bind(this));
-        // this.element.addEventListener('onclick', this.onClickUserString);
+        this.request('get', `${URL}${QUERY_USERS}`, this.toRenderUserData.bind(this));
+        // this.elem.addEventListener('click', this.onClickUserString.bind(this));
 
     }
 
@@ -29,6 +29,11 @@ class Users {
 
         this.elem.children[1].innerHTML = dataForFillHtml;
     }
+
+    // onClickUserString(e) {
+    //     let id = e.target.parentElement.dataset.userId;
+    //     this.request('get',`${URL}${QUERY_USERS}${id}`, this.toRenderUserPosts.bind(this));
+    // }
 
 
 }
