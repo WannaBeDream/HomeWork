@@ -4,20 +4,22 @@ const QUERY_USERS = 'users';
 class Users {
     constructor(elem) {
         this.elem = elem;
+        this.request = request;
+
         this.init();
     }
 
     init() {
-        request('get', URL + QUERY_USERS , (respObj) => { this.toRenderUserData(respObj) });
+        this.request('get', URL + QUERY_USERS, this.toRenderUserData.bind(this));
         // this.element.addEventListener('onclick', this.onClickUserString);
-        
+
     }
 
     toRenderUserData(respObj) {
         let userTemplate = document.getElementById('userTemplate').innerHTML;
         let dataForFillHtml = '';
 
-        respObj.filter((item) => {
+        respObj.forEach((item) => {
             dataForFillHtml += userTemplate
                 .replace('{{id}}', item.id)
                 .replace('{{name}}', item.name)
