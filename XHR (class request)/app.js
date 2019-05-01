@@ -1,5 +1,6 @@
 const URL = 'https://jsonplaceholder.typicode.com/';
 const QUERY_USERS = 'users';
+const QUERY_POSTS = 'posts?userId=';
 
 class Users {
     constructor(elem) {
@@ -11,7 +12,7 @@ class Users {
 
     init() {
         this.request('get', `${URL}${QUERY_USERS}`, this.toRenderUserData.bind(this));
-        // this.elem.addEventListener('click', this.onClickUserString.bind(this));
+        this.elem.addEventListener('click', this.onClickUserString.bind(this));
 
     }
 
@@ -21,19 +22,27 @@ class Users {
 
         respObj.forEach((item) => {
             dataForFillHtml += userTemplate
-                .replace('{{id}}', item.id)
-                .replace('{{name}}', item.name)
-                .replace('{{phone}}', item.phone)
-                .replace('{{email}}', item.email)
+                .replace('{{id}}', `${item.id}`)
+                .replace('{{name}}', `${item.name}`)
+                .replace('{{phone}}', `${item.phone}`)
+                .replace('{{email}}', `${item.email}`)
         })
 
         this.elem.children[1].innerHTML = dataForFillHtml;
     }
 
-    // onClickUserString(e) {
-    //     let id = e.target.parentElement.dataset.userId;
-    //     this.request('get',`${URL}${QUERY_USERS}${id}`, this.toRenderUserPosts.bind(this));
-    // }
+    onClickUserString(e) {
+        let id = e.target.parentElement.dataset.userId;
+        this.request('get', `${URL}${QUERY_POSTS}${id}`, this.toRenderUserPosts.bind(this));
+    }
+
+    toRenderUserPosts(respObj) {
+        respObj.forEach((item) => {
+            console.log('Title number ', `${item.id}`, `${item.title}`)
+            console.log('Body number ', `${item.id}`, `${item.body}`)
+
+        })
+    }
 
 
 }
