@@ -25,8 +25,8 @@ class Users {
                 .replace('{{id}}', `${item.id}`)
                 .replace('{{name}}', `${item.name}`)
                 .replace('{{phone}}', `${item.phone}`)
-                .replace('{{email}}', `${item.email}`)
-        })
+                .replace('{{email}}', `${item.email}`);
+        });
 
         this.elem.children[1].innerHTML = dataForFillHtml;
     }
@@ -38,10 +38,9 @@ class Users {
 
     toRenderUserPosts(respObj) {
         respObj.forEach((item) => {
-            console.log('Title number ', `${item.id}`, `${item.title}`)
-            console.log('Body number ', `${item.id}`, `${item.body}`)
-
-        })
+            console.log('POST number ',`${item.id}`, `${item.title}`,);
+            console.log( `${item.body}`);
+        });
     }
 
 
