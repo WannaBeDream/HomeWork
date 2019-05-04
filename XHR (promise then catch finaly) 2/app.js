@@ -48,15 +48,9 @@ class Users {
     this.fetchUsers();
   }
 
-  onBodyClick(e) {
-    const id = e.target.parentNode.dataset.userId;
-    this.fetchUserPosts(id);
-    this.fetchUserAlbums(id);
-  }
-
   fetchUsers() {
     request('get', Users.BASE_URL + Users.USERS_PATH)
-      .then((dataUsersList) => this.renderUsers(dataUsersList));
+      .then((respUsersList) => this.renderUsers(respUsersList));
 
   }
 
@@ -70,55 +64,36 @@ class Users {
     }).join('\n');
   }
 
-  // Рэндер тайтлов постов 
-  fetchUserPosts(userId) {
-    const url = Users.BASE_URL + Users.POSTS_PATH + '?userId=' + userId;
+  onBodyClick(e) {
+    const id = e.target.parentNode.dataset.userId;
+    const urlPosts = Users.BASE_URL + Users.POSTS_PATH + '?userId=' + id;
+    const urlAlbums = Users.BASE_URL + Users.ALBUMS_PATH + '?userId=' + id;
 
-    request('get', url)
-      .then((dataPosts) => this.fetchUserPostsSort(dataPosts))
-      .then(() => this.renderUserPost());
+
+    request('get', urlPosts)
+      .then((respObj) => {
+        this.renderUserPosts(respObj); // this.fetchUserPosts(id); чейнинг вместо двух функций
+        return request('get', urlAlbums)
+      })
+      .then((respObj) => this.renderUserAlbums(respObj)); // this.fetchUserAlbums(id);
   }
 
-  fetchUserPostsSort(posts) {
-    let titlesPost = ' ';
-    this.userPosts = posts.map((user) => {
-      return titlesPost
-        .replace('', user.title);
-    }).join('<br>');  // найти регулярку для замены
+  renderUserPosts(respPosts) {
+    this.userPosts = document.getElementById('userPosts');
+    this.userPosts.innerHTML = this.getDataForFillHtml(respPosts);
   }
 
-  renderUserPost() {
-    let userPosts = document.getElementById('userPosts');
-    let liElement = document.createElement('li');
-    liElement.innerHTML = this.userPosts;
-    userPosts.appendChild(liElement);
+  renderUserAlbums(respAlbums) {
+    this.userAlbums = document.getElementById('userAlbums');
+    this.userAlbums.innerHTML = this.getDataForFillHtml(respAlbums);
   }
 
-
-  // Рэндер тайтлов Альбомов 
-  fetchUserAlbums(userId) {
-    const url = Users.BASE_URL + Users.ALBUMS_PATH + '?userId=' + userId;
-    request('get', url)
-      .then((dataAlbums) => this.fetchUserAlbumsSort(dataAlbums))
-      .then(() => this.renderUserAlbums());
+  getDataForFillHtml(respData) {
+    const dataForFillHtml = respData.map((item) => {
+      return `<li>${item.title}`;
+    });
+    return dataForFillHtml
   }
-
-  fetchUserAlbumsSort(albums) {
-    let listAlbums = ' ';
-    this.userAlbums = albums.map((user) => {
-      return listAlbums
-        .replace(' ', user.title)
-    }).join('<br>');   // найти регулярку для замены
-  }
-
-  renderUserAlbums() {
-    let userAlbums = document.getElementById('userAlbums');
-    let liElement = document.createElement('li');
-    liElement.innerHTML = this.userAlbums;
-    userAlbums.appendChild(liElement);
-  }
-
-
 
 }
 
