@@ -49,7 +49,9 @@ class Users {
   }
 
   fetchUsers() {
-    request('get', Users.BASE_URL + Users.USERS_PATH)
+    const usersUrl = Users.BASE_URL + Users.USERS_PATH ;
+
+    request('get', usersUrl)
       .then((respUsersList) => this.renderUsers(respUsersList));
 
   }
