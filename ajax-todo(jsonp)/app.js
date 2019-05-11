@@ -33,7 +33,7 @@ function sendContact() {
         phone: contactPhoneInput.value,
         is_active: true
     }
-    console.log(contact)
+    console.log(contact);
     addContactInServer(contact).then(getContacts);
     getDefalautContactForm();
 }
@@ -107,11 +107,11 @@ function overwriteStateInServer(id, elem) {
 
 //Обработчик кнопки удаления
 function onDeleteButtonClick(e) {
-    getId(e.target);
+    searchContact(e.target);
 }
 
-function getId(element) {
-    if (element.dataset.deleteButton) {
+function searchContact(element) {
+    if (element.dataset.deleteButton == "delete") {
         let id = element.parentNode.parentNode.children[0].textContent;
         deleteContactInServer(id).then(getContacts);
     }
