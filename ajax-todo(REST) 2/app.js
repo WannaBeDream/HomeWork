@@ -126,19 +126,19 @@ function saveContactInServer(saveEl) {
         contact.phone = document.getElementById('editPhoneInput').value;
 
 
-    updateContactInServer(URL, contact.id, contact)
+    updateContactInServer(contact)
         .then(getContacts)
 
 }
 
-function updateContactInServer(url, id, data) {
-    return fetch(url + '/' + id, {
+function updateContactInServer(contact) {
+    return fetch(URL + '/' + contact.id, {
         method: "PUT",
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(contact)
     })
 }
 
