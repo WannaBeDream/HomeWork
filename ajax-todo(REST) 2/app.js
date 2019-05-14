@@ -94,16 +94,20 @@ function resetContactForm() {
 
 //Обработчик переключения состояния
 function onContactListClick(event) {
+
     if (event.target.dataset.deleteButton) {
         deleteContactInServer(event.target.parentNode.parentNode.dataset.contactId)
             .then(getContacts);
+
     } else if (event.target.dataset.editButton) {
         editContact(event.target.parentNode.parentNode);
+
     } else if (event.target.dataset.saveButton) {
-        saveContactInServer(event.target.parentNode.parentNode)
-    } else {
-        // changeStateInServer(event.target.parentNode.dataset.contactId) // pop-up
-        // .then(getContacts);
+        saveContactInServer(event.target.parentNode.parentNode);
+
+    } else if (event.target.parentNode.dataset.contactId) {
+        onLineClick(); //pop-up
+
     }
 }
 
@@ -120,11 +124,17 @@ function editContact(editEl) {
 function saveContactInServer(saveEl) {
     const contact = contacts.find((item) => { return item.id == saveEl.dataset.contactId });
 
-        contact.name = document.getElementById('editNameInput').value;
-        contact.surname = document.getElementById('editSurnameInput').value;
-        contact.email = document.getElementById('editEmailInput').value;
-        contact.phone = document.getElementById('editPhoneInput').value;
+    contact.name = document.getElementById('editNameInput').value;
+    contact.surname = document.getElementById('editSurnameInput').value;
+    contact.email = document.getElementById('editEmailInput').value;
+    contact.phone = document.getElementById('editPhoneInput').value;
 
+    // contact = {
+    //     name:
+    //     surname:
+    //     email:
+    //     phone:
+    // }
 
     updateContactInServer(contact)
         .then(getContacts)
@@ -142,29 +152,23 @@ function updateContactInServer(contact) {
     })
 }
 
-// function changeStateInServer(id) {
-//     let contact = contacts.find((c) => c.id == id)
-
-//     contact.is_active = !contact.is_active;
-//     return overwriteStateInServer(contact)
-// }
-
-// function overwriteStateInServer(contact) {
-//     return fetch(URL + '/' + contact.id, {
-//         method: 'PUT',
-//         headers: {
-//             'Accept': 'application/json',
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(contact)
-//     })
-// }
-
-
 function deleteContactInServer(id) {
     return fetch(URL + '/' + id, {
         method: 'DELETE'
     });
 }
 
+function onLineClick(e) {
+    let id = e.target.parentElement.dataset.contactId;
+    getContact(id);
+}
 
+function getContact(id) {
+    fetch( URL + '/' + id)
+    .then(responseObj => responseObj.json())
+    .then(responseObj => renderContact(responseObj));
+}
+
+function renderContact() {
+    
+}
