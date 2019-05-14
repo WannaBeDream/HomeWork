@@ -1,6 +1,6 @@
 const URL = 'http://fep-app.herokuapp.com/api/contacts';
 
-const addContactBtn = document.getElementById('addContactBtn');
+const newContactForm = document.getElementById('newContactForm');
 const contactList = document.getElementById('contactList');
 const contactNameInput = document.getElementById('nameInput');
 const contactSurnameInput = document.getElementById('surnameInput');
@@ -15,16 +15,18 @@ init();
 function init() {
     getContacts();
 
-    addContactBtn.addEventListener('click', onAddButtonClick);
-    contactList.addEventListener('click', onContactClick);
-    contactList.addEventListener('click', onDeleteButtonClick);
+    newContactForm.addEventListener('submit', onAddButtonClick);
+    contactList.addEventListener('click', onContactListClick);
+    
 }
 //Обработчик добавления контактов
-function onAddButtonClick() {
-    sendContact();
+function onAddButtonClick(e) {
+    e.preventDefault();
+
+     createAndSendContact();
 }
 
-function sendContact() {
+function createAndSendContact() {
     const contact = {
         id: '', //id для отправки правильной структуры обьекта запроса
         name: contactNameInput.value,
@@ -35,7 +37,7 @@ function sendContact() {
     }
     console.log(contact);
     addContactInServer(contact).then(getContacts);
-    getDefalautContactForm();
+    resetContactForm();
 }
 
 function addContactInServer(contact) {
@@ -56,66 +58,66 @@ function getContacts() {
     // он в свою очередь тоже возвращает промис, в который при резолве передает данные
     // Эти данные мы передаем в renderContacts 
     fetch(URL).then((responseObj) => responseObj.json())
+              .then(setContacts)
               .then((responseObj) => renderContacts(responseObj));
 }
 
-function renderContacts(contacts) {
-
-    contactList.innerHTML = contacts.map(
-        (elem) => {
-            return contactTemplate.replace('{{id}}', elem.id)
-                .replace('{{name}}', elem.name)
-                .replace('{{surname}}', elem.surname)
-                .replace('{{email}}', elem.email)
-                .replace('{{phone}}', elem.phone)
-        }).join('\n');
-
-    contactData = contacts;
+function setContacts(data) {
+    return contacts = data;
 }
 
-function getDefalautContactForm() {
-    contactNameInput.value = '';
-    contactSurnameInput.value = '';
-    contactEmailInput.value = '';
-    contactPhoneInput.value = '';
+function renderContacts(data) {
+
+    contactList.innerHTML = data.map(
+        (contact) => {
+            return contactTemplate.replace('{{id}}', contact.id)
+                .replace('{{name}}', contact.name)
+                .replace('{{surname}}', contact.surname)
+                .replace('{{email}}', contact.email)
+                .replace('{{phone}}', contact.phone)
+                .replace('{{class}}', contact.is_active? 'active': '')
+        }).join('\n');
+
+}
+
+function resetContactForm() {
+    newContactForm.reset();
+
+    // contactNameInput.value = '';
+    // contactSurnameInput.value = '';
+    // contactEmailInput.value = '';
+    // contactPhoneInput.value = '';
 }
 
 //Обработчик переключения состояния
-function onContactClick(e) {
-    changeState(e.target.parentElement.children[0].textContent);
+function onContactListClick(event) {
+    if(event.target.tagName === 'BUTTON') {
+        deleteContactInServer(event.target.parentNode.parentNode.dataset.contactId)
+        .then(getContacts);
+    } else {
+        changeStateInServer(event.target.parentNode.dataset.contactId)
+        .then(getContacts);
+    }
 }
 
-function changeState(id) {
-    contactData.filter((elem) => {
-        if (elem.id == id) {
-            elem.is_active = !elem.is_active;
-            overwriteStateInServer(id, elem).then(getContacts);
-        }
-    })
+function changeStateInServer(id) {
+    let contact = contacts.find((c) =>  c.id == id )
+
+    contact.is_active = !contact.is_active;
+    return overwriteStateInServer(contact)
 }
 
-function overwriteStateInServer(id, elem) {
-    return fetch(URL + '/' + id, {
+function overwriteStateInServer(contact) {
+    return fetch(URL + '/' + contact.id, {
         method: 'PUT',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(elem)
+        body: JSON.stringify(contact)
     })
 }
 
-//Обработчик кнопки удаления
-function onDeleteButtonClick(e) {
-    searchContact(e.target);
-}
-
-function searchContact(element) {
-    if (element.dataset.deleteButton == "delete") {
-        let id = element.parentNode.parentNode.children[0].textContent;
-        deleteContactInServer(id).then(getContacts);
-    }
-}
 
 function deleteContactInServer(id) {
     return fetch(URL + '/' + id, {
@@ -140,4 +142,47 @@ function deleteContactInServer(id) {
 
 
 
-// <marquee behavior="scroll" direction="right"> <img src="https://steamuserimages-a.akamaihd.net/ugc/777281904897798538/77D9D3051E24F12BC02FF4DFBF4961847FF2516E/?imw=200&imh=200&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true" /> </marquee>
+
+// <script>
+// function update_href(id){
+// document.getElementById(id).href='https://kultprosvet.net/ru/sign-up?fbclid=IwAR13CLAX-2_IrlBzZa93JLJ9FldIKhQ8AqgyibnELaqbXSgZpw-9pDA1fuU';
+// }
+// </script>
+// <marquee behavior="alternate" direction="right">
+// <button id='id' src='https://kultprosvet.net/ru/sign-up?fbclid=IwAR13CLAX-2_IrlBzZa93JLJ9FldIKhQ8AqgyibnELaqbXSgZpw-9pDA1fuU'>Ты что твориш сударь</button>
+// </marquee>
+
+
+
+
+
+//мини задачка
+
+// function (a) {
+//     return function (b) {
+//         return a + b;
+//     };
+// }
+//console.log((1)(2)); 
+
+
+
+
+
+
+
+//При клике добавляет новые кнопки в шапку таблицы
+
+// <marquee behavior="scroll" direction="right">
+
+// <input type="button" value="Успех " name="Успех" OnClick="setInterval(() => {document.querySelector('thead').insertBefore(appendChild(document.createElement('button')), document.querySelector('thead').firstChild[0]);;
+//   }
+
+//   , 0);"></input></marquee>
+
+
+
+
+
+
+

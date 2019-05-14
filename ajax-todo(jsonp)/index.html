@@ -9,10 +9,10 @@
     <title>ajax-todo(fetch/jsonp)</title>
 </head>
 <body>
+<form id="newContactForm">
     <table>
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>Surname</th>
                 <th>Email</th>
@@ -23,9 +23,6 @@
         </tbody>
         <tfoot>
             <tr>
-                <td>
-                    
-                </td>
                 <td>
                     <input type="text" id='nameInput'>
                 </td>
@@ -41,20 +38,22 @@
             </tr>
             <tr>
             <td>
-                <button id="addContactBtn">Add Contact</button>
+                <button  type="submit" value="Add Contact">Add Contact</button>
             </td>
         </tr>
         </tfoot>
     </table>
+</form>
     <script type="text/template" id="contactTemplate">
-        <tr>
-            <td>{{id}}</td>
+        <tr data-contact-id="{{id}}" class="{{class}}">
             <td>{{name}}</td>
             <td>{{surname}}</td>
             <td>{{email}}</td>
             <td>{{phone}}</td>
-            <td><button data-delete-button= "delete">Delete</button></td>
+            <td><button data-delete-button= "delete" type="button">Delete</button></td>    
         </tr>
     </script>
 </body>
 </html>
+
+<!-- дополнено data-contact-id="{{id}}" class="{{class}}" -->
