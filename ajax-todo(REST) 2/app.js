@@ -9,7 +9,8 @@ const contactPhoneInput = document.getElementById('phoneInput');
 const contactTemplate = document.getElementById('contactTemplate').innerHTML;
 
 const contactTemplateEdit = document.getElementById('contactTemplateEdit').innerHTML;
-
+const contactTemplatePopup = document.getElementById('contactTemplatePopup').innerHTML;
+const dialog = document.getElementsByTagName('dialog')[0];
 
 let contactData = [];
 
@@ -20,7 +21,6 @@ function init() {
 
     newContactForm.addEventListener('submit', onAddButtonClick);
     contactList.addEventListener('click', onContactListClick);
-
 }
 //Обработчик добавления контактов
 function onAddButtonClick(e) {
@@ -106,7 +106,7 @@ function onContactListClick(event) {
         saveContactInServer(event.target.parentNode.parentNode);
 
     } else if (event.target.parentNode.dataset.contactId) {
-        onLineClick(); //pop-up
+        onLineClick(event.target.parentElement); //pop-up or <dialog>
 
     }
 }
@@ -158,8 +158,8 @@ function deleteContactInServer(id) {
     });
 }
 
-function onLineClick(e) {
-    let id = e.target.parentElement.dataset.contactId;
+function onLineClick(popupElem) {
+    let id = popupElem.dataset.contactId;
     getContact(id);
 }
 
@@ -169,6 +169,27 @@ function getContact(id) {
     .then(responseObj => renderContact(responseObj));
 }
 
-function renderContact() {
+function renderContact(responseObj) {
+    fillContainer(responseObj)
+}
+
+
+function fillContainer(contact) {
     
+    dialog.innerHTML =  contactTemplatePopup.replace('{{id}}', contact.id)
+    .replace('{{name}}', contact.name)
+    .replace('{{surname}}', contact.surname)
+    .replace('{{email}}', contact.email)
+    .replace('{{phone}}', contact.phone);  
+    
+    dialog.showModal();
+    
+    document.body.addEventListener('click' , onClosePopupButtonClick);
+    
+}
+
+function onClosePopupButtonClick(event) {
+if(event.target.dataset.popupClose)
+        dialog.close();
+
 }
