@@ -189,7 +189,7 @@ function fillContainer(contact) {
 }
 
 function onClosePopupButtonClick(event) {
-if(event.target.dataset.popupClose)
+if(dialog.open)
         dialog.close();
 
 }
