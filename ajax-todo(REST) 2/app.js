@@ -164,9 +164,9 @@ function onLineClick(popupElem) {
 }
 
 function getContact(id) {
-    fetch( URL + '/' + id)
-    .then(responseObj => responseObj.json())
-    .then(responseObj => renderContact(responseObj));
+    fetch(URL + '/' + id)
+        .then(responseObj => responseObj.json())
+        .then(responseObj => renderContact(responseObj));
 }
 
 function renderContact(responseObj) {
@@ -175,21 +175,21 @@ function renderContact(responseObj) {
 
 
 function fillContainer(contact) {
-    
-    dialog.innerHTML =  contactTemplatePopup.replace('{{id}}', contact.id)
-    .replace('{{name}}', contact.name)
-    .replace('{{surname}}', contact.surname)
-    .replace('{{email}}', contact.email)
-    .replace('{{phone}}', contact.phone);  
-    
+
+    dialog.innerHTML = contactTemplatePopup.replace('{{id}}', contact.id)
+        .replace('{{name}}', contact.name)
+        .replace('{{surname}}', contact.surname)
+        .replace('{{email}}', contact.email)
+        .replace('{{phone}}', contact.phone);
+
     dialog.showModal();
-    
-    document.body.addEventListener('click' , onClosePopupButtonClick);
-    
+
+    document.body.addEventListener('click', onClosePopupButtonClick);
+
 }
 
-function onClosePopupButtonClick(event) {
-if(dialog.open)
+function onClosePopupButtonClick() {
+    if (dialog.open)
         dialog.close();
 
 }
