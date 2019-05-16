@@ -10,7 +10,6 @@ const contactTemplate = document.getElementById('contactTemplate').innerHTML;
 
 const contactTemplateEdit = document.getElementById('contactTemplateEdit').innerHTML;
 const contactTemplatePopup = document.getElementById('contactTemplatePopup').innerHTML;
-const dialog = document.getElementsByTagName('dialog')[0];
 
 let contactData = [];
 
