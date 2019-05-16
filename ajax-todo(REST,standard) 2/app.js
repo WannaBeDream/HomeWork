@@ -21,6 +21,7 @@ function init() {
 
     newContactForm.addEventListener('submit', onAddButtonClick);
     contactList.addEventListener('click', onContactListClick);
+    document.body.addEventListener('click', onClosePopupButtonClick);
 }
 //Обработчик добавления контактов
 function onAddButtonClick(e) {
@@ -184,8 +185,6 @@ function fillContainer(contact) {
 
     dialog.showModal();
 
-    document.body.addEventListener('click', onClosePopupButtonClick);
-
 }
 
 function onClosePopupButtonClick() {
@@ -193,3 +192,8 @@ function onClosePopupButtonClick() {
         dialog.close();
 
 }
+
+
+// 1)Поменять html
+// 2)Добавить сss
+// 3)поменять js 
