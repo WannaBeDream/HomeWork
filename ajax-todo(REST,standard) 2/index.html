@@ -9,10 +9,7 @@
     <title>ajax-todo(REST)</title>
 </head>
 <body>
-    <section>
-        <dialog>
-        </dialog>
-    </section>
+    
 <form id="newContactForm">
     <table>
         <thead>
@@ -72,17 +69,19 @@
         </tr>
     </script>
     <script type="text/template" id="contactTemplatePopup">
-    <ul>
-        <li>{{id}}</li>
-        <li>{{name}}</li>
-        <li>{{surname}}</li>
-        <li>{{email}}</li>
-        <li>{{phone}}</li>
-        <!-- <button data-popup-close type="reset">Close</button> -->
 
-    </ul>
+            
+                <ul class="popup-content">
+                    <li>{{id}}</li>
+                    <li>{{name}}</li>
+                    <li>{{surname}}</li>
+                    <li>{{email}}</li>
+                    <li>{{phone}}</li>
+                    <button data-close-popup = 'close'>Close</button>
+                </ul>
+
+            
     </script>
 </body>
 </html>
 
-<!-- дополнено data-contact-id="{{id}}" class="{{class}}" -->

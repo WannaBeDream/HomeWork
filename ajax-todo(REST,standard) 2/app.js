@@ -21,7 +21,7 @@ function init() {
 
     newContactForm.addEventListener('submit', onAddButtonClick);
     contactList.addEventListener('click', onContactListClick);
-    document.body.addEventListener('click', onClosePopupButtonClick);
+    
 }
 //Обработчик добавления контактов
 function onAddButtonClick(e) {
@@ -171,25 +171,34 @@ function getContact(id) {
 }
 
 function renderContact(responseObj) {
-    fillContainer(responseObj)
+    createContainer(responseObj)
 }
 
 
-function fillContainer(contact) {
+function createContainer(contact) {
+    let div = document.createElement('div');
+    div.classList.add('popup-container');
+    document.body.appendChild(div);
 
-    dialog.innerHTML = contactTemplatePopup.replace('{{id}}', contact.id)
+    fillContainer(div,contact);
+
+}
+
+
+function fillContainer(filledElement,contact) {
+
+    filledElement.innerHTML = contactTemplatePopup.replace('{{id}}', contact.id)
         .replace('{{name}}', contact.name)
         .replace('{{surname}}', contact.surname)
         .replace('{{email}}', contact.email)
         .replace('{{phone}}', contact.phone);
 
-    dialog.showModal();
-
+        filledElement.addEventListener('click', onClosePopupButtonClick);
 }
 
-function onClosePopupButtonClick() {
-    if (dialog.open)
-        dialog.close();
+function onClosePopupButtonClick(e) {
+    if (e.target.tagName === 'BUTTON')
+    e.target.parentElement.parentElement.remove();   
 
 }
 
