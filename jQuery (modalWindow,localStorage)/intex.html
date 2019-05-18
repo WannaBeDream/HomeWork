@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous" defer></script>
+    <script src="app.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+  <div class="notesWrapper">
+
+      <h1>Notes Page</h1>
+      <div class="btnContainer">
+          <button class="addNotes">Add</button>
+          <button class="clearNotes">Clear</button>
+      </div>
+
+        <div class="noteModal">
+                <form hidden class="modalForm">
+                        <h2>Title</h2>
+                        <input class="noteTitle" type="text" value="">
+                       <textarea class="noteDescription" name="" cols="30" rows="10" type="text" value=""></textarea>
+                       <button type="submit" class="saveNote">Save</button>
+                       <button type="reset" class="cancelNote">Cancel</button>
+                </form>
+        </div>
+
+        <div class="fieldForNotes">
+        </div>
+  </div>
+
+
+  <script type="text/template" id="noteTemplate">
+
+        <div class="stikerContainer" id="{{id}}">
+          <div>
+            <h3>{{noteHeader}}
+            </h3> 
+            <span>{{noteBody}}</span>
+          </div>
+            <button class="delBtn">Delete</button>
+        </div>
+    </div>
+</script>
+
+</body>
+</html>

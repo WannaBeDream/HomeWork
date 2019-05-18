@@ -12,6 +12,7 @@ const contactTemplateEdit = document.getElementById('contactTemplateEdit').inner
 const contactTemplatePopup = document.getElementById('contactTemplatePopup').innerHTML;
 
 let contactData = [];
+let modal;
 
 init();
 
@@ -175,7 +176,7 @@ function renderContact(responseObj) {
 
 
 function createContainer(contact) {
-    let div = document.createElement('div');
+    div = document.createElement('div');
     div.classList.add('popup-container');
     document.body.appendChild(div);
 
@@ -198,10 +199,14 @@ function fillContainer(filledElement,contact) {
 function onClosePopupButtonClick(e) {
     if (e.target.tagName === 'BUTTON')
     e.target.parentElement.parentElement.remove();   
+    
+    // дописать чеез глобальну область видимости
+    
 
 }
 
 
-// 1)Поменять html
-// 2)Добавить сss
-// 3)поменять js 
+
+
+
+

@@ -1,0 +1,84 @@
+/* Title Style */
+h1{
+    text-align: center;
+    font-weight: bold;
+    background-color: black;
+    color: #FFF;
+    margin: 0 auto;
+}
+/* Btn Style */
+.btnContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.addNotes , .clearNotes , .saveNote , .cancelNote , .delBtn{
+    transition: .5s;
+    font-weight: bold;
+    margin: 20px;
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: black;
+    border: 1px solid black;
+    color: #FFF;
+    cursor: pointer;
+}
+.addNotes:hover , .clearNotes:hover {
+transition: .5s;
+-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+background-color: #FFF;
+color: black;
+cursor: pointer;
+}
+
+
+.delBtn:hover {
+    transition: .5s;
+-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+background-color: rgb(182, 7, 7);
+color: black;
+cursor: pointer;
+}
+
+
+/* Form */
+.noteModal{
+    display: inline-block;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+.noteModal h2{
+    background-color: black;
+    color: #FFF;
+    margin-top: 0px;
+}
+.noteTitle{
+    display: block;
+    height: 25px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-color:black;
+}
+.noteModal textarea{
+    display: block;
+    resize: none;
+    width: 100%;
+    margin: 0 auto; 
+}
+
+.stikerContainer {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    border: 5px solid #fff;
+    background-color: blueviolet;
+    text-align: center;
+    font-size: 20px;
+}
