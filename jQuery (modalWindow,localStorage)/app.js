@@ -47,7 +47,7 @@ $(function () {
             fetchNotes();
         })
         saveNote.on('click', onSaveClick);
-        delBtn.on('click', onDelBtnClick);
+        fieldForNotes.on('click', onDelBtnClick);
     }
 
     function onSaveClick(e) {
@@ -94,7 +94,7 @@ $(function () {
         let stikerContainer = $(e.target).parent('.stikerContainer');
 
 
-        const note = notes.find((item) => item.id == stikerContainer.attr('id')); //???
+        const note = notes.find((item) => item.id == stikerContainer.data('idStiker')); //???
         notes = notes.filter((item) => item !== note);
 
         setItemsToLocalStorage('notes', notes);
