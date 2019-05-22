@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="./app.js" async></script>
+    <title>ajax-todo(JQuery)</title>
+  </head>
+  <body>
+
+
+    <div id="dialog-form" class="popup-container" title="Create new contact">
+      <p class="validateTips">Here are messages about input failures.</p>
+      <form class="popup-content">
+        <fieldset>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            class="text ui-widget-content ui-corner-all"
+            placeholder="Name"/>
+          <input
+            type="text"
+            name="surname"
+            id="surname"
+            class="text ui-widget-content ui-corner-all"
+            placeholder="Surname"/>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="text ui-widget-content ui-corner-all" 
+            placeholder="Email"/>
+          <input
+            type="phone"
+            name="phone"
+            id="phone"
+            class="text ui-widget-content ui-corner-all"
+            placeholder="Phone"/>
+          <input
+            type="submit"
+            tabindex="-1"
+            style="position:absolute; top:-1000px"/>
+        </fieldset>
+      </form>
+
+    </div>
+
+    <div id="newContactForm" class="ui-widget">
+      <button type="submit" id="createContact">Create Contact</button>
+      <table id="users" class="ui-widget ui-widget-content">
+        <thead>
+          <tr class="ui-widget-header ">
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Email</th>
+            <th>Phone</th>
+          </tr>
+        </thead>
+        <tbody id="contactList"></tbody>
+      </table>
+    </div>
+
+    <script type="text/template" id="contactTemplate">
+      <tr data-contact-id="{{id}}" class="ui-widget-header">
+          <td>{{name}}</td>
+          <td>{{surname}}</td>
+          <td>{{email}}</td>
+          <td>{{phone}}</td>
+
+          <td><button data-delete-button = "delete" type="button">Delete</button></td>
+          <td><button data-edit-button = "edit" type="button">Edit</button></td>
+      </tr>
+    </script>
+
+    
+  </body>
+</html>

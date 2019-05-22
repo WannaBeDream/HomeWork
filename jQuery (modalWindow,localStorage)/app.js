@@ -87,7 +87,8 @@ $(function () {
                 .replace('{{noteBody}}', item.description)
         }).join('\n');
 
-        fieldForNotes.html(fillData);
+        console.log(fillData); //пример(как делать не стоит)
+        fieldForNotes.html(fillData);  // данные лучше не заливать как html(теги)
     }
 
     function onDelBtnClick(e) {
@@ -104,3 +105,48 @@ $(function () {
 
 
 
+
+
+// ES6 spread разбиение шаблона , generator итерация по ключам и значениям , модули
+
+// set(массив разных типов элемнетов,все елементы уникальны)  и map новые типы данных у них есть свои методы
+// это один из способов удаления дубликатов , map для добавления уникального массива 
+
+
+// vikSet-для удаления ссылания на инстанс и против утечки памяти,создают слабую связь, функции конструкторы vikMap
+
+// generator расчеты с шагами(по частям)
+
+
+// function gen(){
+//     console.log('start');
+//     yield 1;
+//     console.log('after 1');
+//     yield 2;
+//     console.log('after 2');
+//     yield 3;
+//     console.log('after 3');
+//     return 4;
+//     //приостанавливает функцию и возвращает результат,при повторном вызове идет с этого же места
+// }
+
+// const g = gen();
+// g.next()
+// g.next()
+
+//AMD asincronius module definitions
+//Модули requaerJS   requer(a,b)  function(a,b)
+//CommonJS(brauzerify) module.exports(function) подключение через requaer
+
+// ES6 Moduls  
+
+
+
+//RegExp (регулярные выражения,спецсимволы для патернов) 
+//  let reg = /  /g                 .replace(/  /g  , name.id)
+// . -любой символ  g-global i-...      ,   ?-0 или 1 раз берет 
+
+//звездочка берет все после символа что перед ней
+// так же есть диапазон 
+// /w возьми первый литерал
+// домик в середине строки
