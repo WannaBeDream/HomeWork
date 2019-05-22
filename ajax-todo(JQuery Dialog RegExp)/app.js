@@ -58,7 +58,7 @@ $(function () {
         valid = valid && checkRegexp(name, /^[a-z]([0-9a-z_\s])+$/i, "Name may consist of a-z, 0-9, underscores, spaces and must begin with a letter.");
         valid = valid && checkRegexp(surname, /^[a-z]([0-9a-z_\s])+$/i, "Surname may consist of a-z, 0-9, underscores, spaces and must begin with a letter.");
         valid = valid && checkRegexp(email, emailRegex, "eg. ui@jquery.com");
-        valid = valid && checkRegexp(phone, phoneRegex, "Phone number should be +38xxxxxxxxxx");
+        valid = valid && checkRegexp(phone, phoneRegex, "Phone number +38xxxxxx");
 
         return valid;
     }
