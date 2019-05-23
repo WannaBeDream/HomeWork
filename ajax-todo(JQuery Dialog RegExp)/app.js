@@ -13,8 +13,7 @@ $(function () {
         dialogForm = $("#dialog-form"),
         createUserButton = $("#createContact"),
         allFields = $([]).add(name).add(surname).add(email).add(phone),
-        tips = $(".validateTips"),
-        hiddenField = $("#hidden-field");
+        tips = $(".validateTips");
 
 
     function updateTips(t) {
