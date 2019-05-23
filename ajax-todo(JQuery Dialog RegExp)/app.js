@@ -1,9 +1,10 @@
 $(function () {
     const URL = 'http://fep-app.herokuapp.com/api/contacts';
     const contactTemplate = $('#contactTemplate').html();
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    const phoneRegex = /^((\+3)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
+
     let dialog, form, idEditedItem,
-        emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
-        phoneRegex = /^((\+3)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/,
         name = $("#name"),
         surname = $("#surname"),
         email = $("#email"),
@@ -12,8 +13,8 @@ $(function () {
         dialogForm = $("#dialog-form"),
         createUserButton = $("#createContact"),
         allFields = $([]).add(name).add(surname).add(email).add(phone),
-        tips = $(".validateTips");
-        // hiddenField = $("#hidden-field");
+        tips = $(".validateTips"),
+        hiddenField = $("#hidden-field");
 
 
     function updateTips(t) {
@@ -88,47 +89,53 @@ $(function () {
 
     function onCreateButtonClick() {
 
-
-
         if (validate()) {
             if (idEditedItem) {
-                let contact = {
-                    id: idEditedItem,
-                    name: name.val(),
-                    surname: surname.val(),
-                    email: email.val(),
-                    phone: phone.val(),
-                    is_active: true
-                }
-                $.ajax({
-                    url: URL + '/' + idEditedItem,
-                    type: "PUT",
-                    data: JSON.stringify(contact),
-                    contentType: "application/json",
-                    dataType: "json",
-                    success: getContacts
-                })
-
+                saveEditContact(idEditedItem);
             } else {
-                const contact = {
-                    id: '',
-                    name: name.val(),
-                    surname: surname.val(),
-                    email: email.val(),
-                    phone: phone.val(),
-                    is_active: true
-                }
-
-                $.ajax({
-                    url: URL,
-                    type: "POST",
-                    data: JSON.stringify(contact),
-                    contentType: "application/json",
-                    dataType: "json",
-                    success: getContacts
-                })
+                saveContact();
             }
         }
+    }
+
+
+    function saveEditContact(idItem) {
+        let contact = {
+            id: idItem,
+            name: name.val(),
+            surname: surname.val(),
+            email: email.val(),
+            phone: phone.val(),
+            is_active: true
+        }
+        $.ajax({
+            url: URL + '/' + idItem,
+            type: "PUT",
+            data: JSON.stringify(contact),
+            contentType: "application/json",
+            dataType: "json",
+            success: getContacts
+        })
+    }
+
+    function saveContact() {
+        const contact = {
+            id: '',
+            name: name.val(),
+            surname: surname.val(),
+            email: email.val(),
+            phone: phone.val(),
+            is_active: true
+        }
+
+        $.ajax({
+            url: URL,
+            type: "POST",
+            data: JSON.stringify(contact),
+            contentType: "application/json",
+            dataType: "json",
+            success: getContacts
+        })
     }
 
     //Получить контакты с сервера
@@ -139,7 +146,7 @@ $(function () {
     //Рендер контактов
     function fetchContacts(contacts) {
 
-        tbody.html(contacts.map(   //
+        tbody.html(contacts.map(
             item => {
                 return contactTemplate.replace('{{id}}', item.id)  //
                     .replace('{{name}}', item.name)
@@ -182,8 +189,8 @@ $(function () {
     }
 
     function getId(element) {
-        let id = $(element).parents('tr').data('contact-id');
-        return id;
+        return $(element).parents('tr').data('contact-id');
+
     }
 
     resetContactForm();
