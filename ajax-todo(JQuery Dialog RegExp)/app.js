@@ -89,11 +89,13 @@ $(function () {
     function onCreateButtonClick() {
 
         if (validate()) {
+
             if (idEditedItem) {
                 saveEditContact(idEditedItem);
             } else {
                 saveContact();
             }
+            
         }
     }
 
