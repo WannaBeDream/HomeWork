@@ -7,9 +7,7 @@
   },
   "description": "Package to calc numbers",
   "main": "main.js",
-  "dependencies": {
-    "lodash": "^4.17.11"
-  },
+  "dependencies": {},
   "devDependencies": {},
   "scripts": {
     "start": "node ./main",
