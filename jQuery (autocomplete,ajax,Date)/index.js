@@ -1,3 +1,5 @@
+'use strict';
+
 $(function () {
 
   const URL_USERS_SEARCH = "https://api.github.com/search/users?q=";
@@ -12,19 +14,13 @@ $(function () {
 
   $("#select-user").autocomplete({
     source: function (request, response) {
-      $.ajax({
-        url: URL_USERS_SEARCH + request.term,
-        type: "GET"
-      }).done((data) => {                   //success: function
+      $.get(URL_USERS_SEARCH + request.term).done((data) => {                   //ajax get + success: function
         response(getListLogins(data));
       });
     },
     minLength: 2,
     select: function (event, ui) {
-      $.ajax({
-        url: URL_USERS + ui.item.label,
-        type: "GET"
-      }).done((data) => {               //success: function
+      $.get(URL_USERS + ui.item.label).done((data) => {               //success: function
         renderUserInfo(data);
       });
     }
@@ -32,16 +28,16 @@ $(function () {
 
   function renderUserInfo(data) {
     let date = new Date(data.created_at);
-    let mainDate = `${date.getDate()} - ${date.getMonth()} - ${date.getFullYear()}`;
+    date.mainDate = `${date.getDate()} - ${date.getMonth()} - ${date.getFullYear()}`;
 
     wrapperUi.css("display", "flex");
     userImg.attr("src", data.avatar_url);
-    userName.html(data.name);
+    userName.text(data.name);
     userLogin.attr("href", data.html_url);
-    userLogin.html("(" + data.login + ")");
-    userRepositories.html(data.public_repos);
-    userFollowers.html(data.followers);
-    userRegistration.html(mainDate);
+    userLogin.text("(" + data.login + ")");
+    userRepositories.text(data.public_repos);
+    userFollowers.text(data.followers);
+    userRegistration.text(date.mainDate);
   }
 
 
