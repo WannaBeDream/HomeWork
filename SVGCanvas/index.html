@@ -10,9 +10,26 @@
 </head>
 <body>
     <div class="container">
+
         <canvas width="400" height="400" id="canvasBall"></canvas>
-        <input type="color" min="10" max="100" value="30" id="inputColor">
-        <input type="range" id="inputRange">
+
+        <ul>
+            <li>
+                <label for="inputColor">смена цвета</label>
+                <input type="color" id="inputColor" name="inputColor">
+            </li>
+            <li>
+                <label for="inputRangeSize">смена размера фигуры</label>
+                <input type="range" min="10" max="100" value="30" id="inputRangeSize" name="inputRangeSize">
+            </li>
+            <li>
+                <label for="inputRangeSpeed">смена скорости фигуры</label>
+                <input type="range" min="1" max="100" value="10" id="inputRangeSpeed" name="inputRangeSpeed">
+            </li>
+            <li>
+                <button id="inputChangeFigure">Поломать фигуру</button>
+            </li>
+        </ul>
     </div>
 
 
