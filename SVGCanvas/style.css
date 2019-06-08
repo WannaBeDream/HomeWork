@@ -1,0 +1,10 @@
+.my-class {
+    fill: blue;
+    stroke: red ;
+    stroke-width: 10;
+}
+
+#canvasBall {
+    border: 1px solid black;
+   
+}

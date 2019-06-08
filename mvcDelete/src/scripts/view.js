@@ -7,7 +7,7 @@ export default class TodoView{
         this.onTdElementClick = this.onTdElementClick.bind(this);
         this.onBtnElementClick = this.onBtnElementClick.bind(this);
 
-        this.$el.on('click', 'tr[data-id]', this.onTdElementClick);
+        this.$el.on('click', 'td[data-name]', this.onTdElementClick);
         this.$el.on('click', 'button', this.onBtnElementClick);
     }
 
@@ -19,7 +19,7 @@ export default class TodoView{
 
     onBtnElementClick(event){
         const id = $(event.target).parents("tr").data('id');
-        this.onBtnClick(id);
+        this.onBtnClick && this.onBtnClick(id); // чтобы не было ошибки(проверка)
     }
 
     render(data){
@@ -32,7 +32,7 @@ export default class TodoView{
         return `
         <tr data-id="${el.id}">
         <td>${el.id}</td>
-        <td>${el.name}</td>
+        <td data-name>${el.name}</td>
         <td>${el.surname}</td>
         <td>${el.email}</td>
         <td>${el.phone}</td>
@@ -43,3 +43,5 @@ export default class TodoView{
         `;
     }
 }   
+
+//абстрактное представление 

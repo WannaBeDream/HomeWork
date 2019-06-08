@@ -1,25 +1,25 @@
 let urlWeakMap = new WeakMap;
 
-export default class ToDoModel{
-    get url(){
+export default class ToDoModel {
+    get url() {
         return urlWeakMap.get(this);
     }
 
-    set url(val){
+    set url(val) {
         urlWeakMap.set(this, val);
     }
 
-    constructor(collectionUrl, data){
+    constructor(collectionUrl, data) {
         this.url = collectionUrl;
         Object.assign(this, data);
 
         // console.log('model constructor', this.url);
     }
 
-    save(){
-        if (this.id){
-            this.update();
-        } else{
+    save() {
+        if (this.id) {
+            return this.update();
+        } else {
             // this.create();
         }
     }
@@ -27,19 +27,23 @@ export default class ToDoModel{
 
     remove() {
         console.log('Удаление успешно');
-        fetch(`${this.url}/${this.id}`, {
+        return fetch(`${this.url}/${this.id}`, {
             method: "DELETE"
-    })
+        })
+
     }
 
-    update(){
-        fetch(`${this.url}/${this.id}`, {
-                method: "PUT",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(this)
+    update() {
+        return fetch(`${this.url}/${this.id}`, {
+            method: "PUT",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this)
         })
     }
 }
+
+
+//удаление изменение данных
